@@ -1,62 +1,50 @@
-<img src="RSTnet.png"></img>
+# RSTnet：实时语音-文本基础模型工具包（持续更新中）
 
+构建能够理解和生成语音的实时语音-文本基础模型已引起广泛关注，ChatGPT-4o和Moshi等典型范例已展现出其潜力。然而，这类模型的训练仍面临诸多挑战。为此，我们推出RSTnet——一个专为开发实时语音-文本基础模型设计的开源平台。该工具包提供从数据处理、预训练到微调的完整框架，基于实时语音对话模型（Moshi）和通用音频生成模型（UniAudio）等前沿研究构建，主要包含四大核心模块：(1) 数据准备 (2) 流式音频编解码模型 (3) 语音-文本基础模型 (4) 基准测试与评估。
 
-# RSTnet: Real-time Speech-Text Foundation Model Toolkit (continuing update)
-Building a real-time speech-text foundation model capable of understanding and generating speech has garnered significant attention. Notable examples of such models include ChatGPT-4o and Moshi. However, challenges in training these models continue to persist in the research community. We introduce RSTnet, a new open-source platform designed for developing real-time speech-text foundation models. RSTnet offers a comprehensive framework for data processing, pre-training, and fine-tuning, aimed at helping researchers build their real-time speech-text models efficiently. It builds upon previous works, such as the real-time spoken dialogue model (Moshi) and the universal audio generation model (UniAudio). RSTnet consists of following key components: (1) Data preparation; (2) streaming audio codec models; (3) speech-text foundation models; (4) Benchmark and Evaluation.
+## 最新动态
+• [x] 2025.3.4 发布RSTnet第二版，支持语音-文本基础模型预训练，详见MLLM_v2模块
+• [x] 2024.10.7 发布RSTnet初始版本
 
-## News
-- [x] 2025.3.4. We release the second version of RSTnet, which supports to pre-training speech-text foundation model. Please refer to MLLM_v2 to find the details.
-- [x] 2024.10.7. We release the first version of RSTnet.
+## 参与贡献
+本项目持续开发中，欢迎通过以下方式参与：
+• [1] 提交issue或PR修复问题
+• [2] 提供数据收集、流式编解码或语音-文本模型的新思路
+• [3] 申请成为项目作者（联系邮箱：dcyang@se.cuhk.edu.hk）
 
-## Make Contributions
-The project is still ongoing. If you have interest about RSTnet, welcome to make contribution. You can consider:
-- [1] Propose issue or PR to solve the bugs
-- [2] Propose more idea about Data collection, streaming codec, and speech-text foundation model
-- [3] Join us as an author of this project. (Contact me by dcyang@se.cuhk.edu.hk)
-
-
-## Install
-
-```
+## 安装指南
+```bash
 conda create -n RSTnet python=3.12
 conda activate RSTnet
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-pip install tqdm
-pip install librosa==0.9.1
-pip install matplotlib
-pip install omegaconf 
-pip install einops
-pip install vector_quantize_pytorch
-pip install tensorboard
-pip install deepspeed
-pip install peft
+pip install tqdm librosa==0.9.1 matplotlib omegaconf einops
+pip install vector_quantize_pytorch tensorboard deepspeed peft
 ```
 
-## Technical report
-You can find our technical report from https://github.com/yangdongchao/RSTnet/blob/main/RSTnet.pdf
+## 技术报告
+完整技术文档详见：https://github.com/yangdongchao/RSTnet/blob/main/RSTnet.pdf
 
-## DataPipeline
-More details will be updated soon. You can refer to DataPipeline part.
+## 数据处理管道
+详细说明即将更新，请关注DataPipeline模块
 
-## AudioCodec
-We plan to support more SOTA streaming audio codec. Now, we have reproduced the MimiCodec.
+## 音频编解码器
+当前已复现MimiCodec，未来将集成更多先进流式音频编解码方案
 
-## Multi-modal LLM
-We have released (1) the fine-tuning code for moshi (2) Pre-training speech-text foundation model recipes, which includes the following advantages:
+## 多模态大模型
+已发布功能包括：
+1. Moshi模型微调代码
+2. 语音-文本基础模型预训练方案
+核心优势：
+• 兼容LLAMA/Gemma/Mistral/Phi/StableLM/Qwen等主流大模型架构
+• 支持LoRA微调技术降低GPU资源消耗
+• 提供完整模型训练方案（需充足GPU资源）
 
-(1) Supports any LLM backbone, includes LLAMA, Gemma, Mistral, Phi, StableLM, Qwen 
-
-(2) Supports Lora fine-tuning LLM backbone to save the GPU resources
-
-(3) Supports fully training for MLLM if you have ennough GPUs.
-
-
-## Reference
-The implements of streaming audio codec and speech-text language models are based on previous codebase:
+## 参考文献
+本项目的流式音频编解码与语音-文本模型实现基于以下代码库：
 https://github.com/kyutai-labs/moshi
 https://github.com/yangdongchao/UniAudio
 
-## Citations
+## 引用格式
 ```bibtex
 @techreport{RSTnet,
   title={RSTnet: Real-time Speech-Text Foundation Model Toolkit},
@@ -68,14 +56,13 @@ https://github.com/yangdongchao/UniAudio
 ```bibtex
 @techreport{kyutai2024moshi,
     author = {Alexandre D\'efossez and Laurent Mazar\'e and Manu Orsini and Am\'elie Royer and
-			  Patrick P\'erez and Herv\'e J\'egou and Edouard Grave and Neil Zeghidour},
+              Patrick P\'erez and Herv\'e J\'egou and Edouard Grave and Neil Zeghidour},
     title = {Moshi: a speech-text foundation model for real-time dialogue},
     institution = {Kyutai},
     year={2024},
     month={September},
     url={http://kyutai.org/Moshi.pdf},
 }
-```
 ```
 ```bibtex
 @article{yang2023uniaudio,
@@ -85,5 +72,3 @@ https://github.com/yangdongchao/UniAudio
   year={2023}
 }
 ```
-
-
